@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Artículo de Play</title>
+  <link rel="stylesheet" type="text/css" href="css/compras.css">
+</head>
+<body>
+  <h1>Artículo de Play</h1>
+  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+
+  <h2>Consolas</h2>
+  <ul class="console-list">
+    <li>
+      <img src="console1.jpg" alt="PlayStation 5">
+      <span>PlayStation 5</span>
+      <span class="price">$500,000</span>
+      <button class="add-to-cart" data-item="PlayStation 5" data-price="500000">Agregar al carrito</button>
+    </li>
+    <li>
+      <img src="console2.jpg" alt="Xbox Series X">
+      <span>Xbox Series X</span>
+      <span class="price">$450,000</span>
+      <button class="add-to-cart" data-item="Xbox Series X" data-price="450000">Agregar al carrito</button>
+    </li>
+    <li>
+      <img src="console3.jpg" alt="Nintendo Switch">
+      <span>Nintendo Switch</span>
+      <span class="price">$300,000</span>
+      <button class="add-to-cart" data-item="Nintendo Switch" data-price="300000">Agregar al carrito</button>
+    </li>
+  </ul>
+
+  <h2>Juegos</h2>
+  <ul class="game-list">
+    <li>
+      <img src="game1.jpg" alt="Red Dead Redemption 2">
+      <span>Red Dead Redemption 2</span>
+      <span class="price">$200,000</span>
+      <button class="add-to-cart" data-item="Red Dead Redemption 2" data-price="200000">Agregar al carrito</button>
+    </li>
+    <li>
+      <img src="game2.jpg" alt="The Legend of Zelda: Breath of the Wild">
+      <span>The Legend of Zelda: Breath of the Wild</span>
+      <span class="price">$250,000</span>
+      <button class="add-to-cart" data-item="The Legend of Zelda: Breath of the Wild" data-price="250000">Agregar al carrito</button>
+    </li>
+    <li>
+      <img src="game3.jpg" alt="God of War">
+      <span>God of War</span>
+      <span class="price">$180,000</span>
+      <button class="add-to-cart" data-item="God of War" data-price="180000">Agregar al carrito</button>
+    </li>
+  </ul>
+
+  <div class="cart">
+    <h2>Carrito de compra</h2>
+    <ul class="cart-items">
+      <!-- Los elementos seleccionados se agregarán dinámicamente aquí -->
+    </ul>
+    <span class="total-price">Total: $0</span>
+    <button class="checkout-button">Realizar compra</button>
+  </div>
+
+  <h2>Suscripción</h2>
+  <form id="subscription-form">
+    <label for="email">Correo electrónico:</label>
+<input type="email" id="email" name="email" required>
+<button type="submit" class="subscribe-button">Suscribirse</button>
+
+  </form>
+  <script src="js/compras.js"></script>
+</body>
+</html>

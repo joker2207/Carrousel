@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Formulario de Compra</title>
+</head>
+
+<body>
+  <h1>Formulario de Compra</h1>
+
+  <div id="total-element"></div>
+
+  <form id="purchase-form">
+    <label for="name">Nombre:</label>
+    <input type="text" id="name" name="name">
+
+    <label for="email">Correo electrónico:</label>
+    <input type="email" id="email" name="email">
+
+    <label for="payment-method">Método de Pago:</label>
+    <select id="payment-method" name="payment-method">
+      <option value="tarjeta">Tarjeta de Crédito</option>
+      <option value="pse">PSE</option>
+      <option value="otros">Otros</option>
+    </select>
+
+    <div id="credit-card-form" style="display: none;">
+      <h3>Forma de Pago: Tarjeta de Crédito</h3>
+      <label for="credit-card-number">Número de Tarjeta:</label>
+      <input type="text" id="credit-card-number" name="credit-card-number">
+
+      <label for="expiration-date">Fecha de Vencimiento:</label>
+      <input type="text" id="expiration-date" name="expiration-date">
+
+      <label for="cvv">CVV:</label>
+      <input type="text" id="cvv" name="cvv">
+    </div>
+
+    <div id="pse-form" style="display: none;">
+      <h3>Forma de Pago: PSE</h3>
+      <!-- Aquí van los campos específicos para PSE -->
+      <label for="bank">Banco:</label>
+      <select id="bank" name="bank">
+        <option value="banco1">Banco 1</option>
+        <option value="banco2">Banco 2</option>
+        <option value="banco3">Banco 3</option>
+      </select>
+    </div>
+
+    <div id="other-payment-form" style="display: none;">
+      <h3>Otros Métodos de Pago</h3>
+      <!-- Aquí van los campos para otros métodos de pago -->
+      <label for="other-method">Método de Pago:</label>
+      <input type="text" id="other-method" name="other-method">
+    </div>
+
+    <button type="submit">Realizar Pago</button>
+  </form>
+
+  <script>
+    // Obtener el valor total de la compra de la URL
+    var urlParams = new URLSearchParams(window.location.search);
+    var total = urlParams.get('total');
+
+    // Mostrar el valor total donde sea necesario
+    var totalElement = document.getElementById('total-element');
+    totalElement.textContent = 'Total de la compra: $' + total;
+
+    // Mostrar u ocultar los formularios según el método de pago seleccionado
+    var paymentMethodSelect = document.getElementById('payment-method');
+    var creditCardForm = document.getElementById('credit-card-form');
+    var pseForm = document.getElementById('pse-form');
+    var otherPaymentForm = document.getElementById('other-payment-form');
+
+    paymentMethodSelect.addEventListener('change', function () {
+      var selectedOption = paymentMethodSelect.value;
+
+      if (selectedOption === 'tarjeta') {
+        creditCardForm.style.display = 'block';
+        pseForm.style.display = 'none';
+        otherPaymentForm.style.display = 'none';
+      }
+      else if (selectedOption === 'pse') {
+        creditCardForm.style.display = 'none';
+        pseForm.style.display = 'block';
+        otherPaymentForm.style.display = 'none';
+      } else {
+        creditCardForm.style.display = 'none';
+        pseForm.style.display = 'none';
+        otherPaymentForm.style.display = 'block';
+      }
+    });
+
+    // Manejar la presentación del formulario al enviar
+    var purchaseForm = document.getElementById('purchase-form');
+    purchaseForm.addEventListener('submit', function (event) {
+      event.preventDefault();
+
+      // Obtener los valores ingresados en el formulario
+      var name = document.getElementById('name').value;
+      var email = document.getElementById('email').value;
+      var paymentMethod = paymentMethodSelect.value;
+      var paymentDetails = '';
+
+      // Obtener los detalles específicos del método de pago seleccionado
+      if (paymentMethod === 'tarjeta') {
+        var creditCardNumber = document.getElementById('credit-card-number').value;
+        paymentDetails = 'Tarjeta de Crédito: ' + creditCardNumber;
+      } else if (paymentMethod === 'pse') {
+        var selectedBank = document.getElementById('bank').value;
+        paymentDetails = 'PSE - Banco: ' + selectedBank;
+      } else {
+        var otherMethod = document.getElementById('other-method').value;
+        paymentDetails = 'Otros Métodos de Pago: ' + otherMethod;
+      }
+
+      // Realizar acciones adicionales según los valores ingresados
+      console.log('Nombre:', name);
+      console.log('Correo electrónico:', email);
+      console.log('Método de Pago:', paymentMethod);
+      console.log('Detalles de Pago:', paymentDetails);
+
+      // Aquí puedes realizar cualquier otra acción que necesites, como enviar los datos a un servidor, mostrar un mensaje de confirmación, etc.
+
+      // Redirigir o mostrar un mensaje de confirmación
+      window.location.href = 'confirmacion.html'; // Redirige a la página de confirmación
+      // O puedes mostrar un mensaje de confirmación en la misma página utilizando JavaScript o un modal, etc.
+    });
+  </script>
+</body>
+
+</html>
